@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dreamshare Website
+
+## Overview
+
+This project is a responsive web application built to meet the design specifications provided in the Figma file. It demonstrates the implementation of a dynamic, accessible, and SEO-optimized page using React (or Next.js/Gatsby).
+
+## Features
+
+- **Responsive Design**: Adapts to various devices and screen sizes.
+- **SEO Optimization**: Semantic HTML structure and relevant meta tags.
+- **Accessibility**: Compliance with accessibility standards.
+- **Google Tag Manager**: Integrated with Google Analytics for tracking.
+- **Dynamic Data**: Fetches and displays data from selected APIs.
+- **Pagination and Modal**: Includes "Load more" functionality and modal display for additional information.
 
 ## Getting Started
 
