@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeaderNavigation: React.FC = () => {
   return (
-    <div className="absolute inset-x-0 top-0 z-50">
+    <div className="absolute inset-x-0 top-0 z-50 font-montserrat">
       <nav className="flex items-center mx-auto max-w-6xl justify-between p-6 lg:px-8" aria-label="Global">
         {/* <!-- Logo Container --> */}
         <div className="hidden lg:flex lg:flex-1 items-center">

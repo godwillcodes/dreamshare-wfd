@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)'],
+        roboto: ['var(--font-roboto)'],
+      },
     },
   },
   plugins: [],
