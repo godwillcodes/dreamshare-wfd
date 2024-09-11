@@ -25,9 +25,12 @@ const HeaderContent: React.FC = () => {
             Dream</h1>
           <p className="mt-6 text-lg font-light font-roboto leading-8 text-[#F7F3F2]">And find the perfect partner</p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a href="#"
-              className="text-base font-bold font-montserrat  text-white bg-[#ff4e50] px-6 py-3 rounded-full hover:bg-[#ff3b3f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff4e50]"
-              role="button" aria-label="Find your holiday partner">Find your holiday partner</a>
+          <a href="#" className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
+          transition-all duration-150 ease-in-out transform   hover:text-white hover:border-[#ff4e50]
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg" role="button"
+            aria-label="Sign Up">
+            Find your perfect holiday partner
+          </a>
           </div>
         </div>
       </div>
