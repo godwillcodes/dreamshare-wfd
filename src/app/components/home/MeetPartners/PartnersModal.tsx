@@ -42,7 +42,7 @@ const PartnersModal: React.FC<PartnersModalProps> = ({ isOpen, onClose, people }
                   height={128}
                 />
                 <h3 className="mt-2 font-montserrat text-sm font-medium text-gray-900">{person.name}</h3>
-                <p className="text-xs text-gray-500">{person.known_for_department}</p>
+                <p className="text-xs font-roboto text-gray-500">{person.known_for_department}</p>
               </div>
             ))}
           </div>

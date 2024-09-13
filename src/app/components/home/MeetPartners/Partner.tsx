@@ -26,8 +26,8 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
         placeholder="blur"
         blurDataURL="/user-hands-svgrepo-com.svg"
       />
-      <h3 className="mt-6 mb-4 text-[#444444] font-montserrat text-xl  font-bold leading-7 tracking-tight text-gray-900">{person.name}</h3>
-      <p className="text-base leading-6 font-light text-gray-600">{person.known_for_department}</p>
+      <h3 className="mt-6 mb-4  text-[#444444] font-montserrat text-xl  font-bold leading-7 tracking-tight text-gray-900">{person.name}</h3>
+      <p className="text-base font-roboto leading-6 font-light text-gray-600">{person.known_for_department}</p>
     </li>
   );
 };
