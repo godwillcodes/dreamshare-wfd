@@ -8,7 +8,8 @@ interface DreamshareCardProps {
   releaseDate: string;
 }
 
-const DreamshareCard: React.FC<DreamshareCardProps> = ({ posterPath, title, overview, releaseDate }) => {
+// Memoize the component to avoid unnecessary re-renders
+const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, title, overview, releaseDate }) => {
   return (
     <div className="relative h-[400px] rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105">
       <Image
@@ -16,6 +17,9 @@ const DreamshareCard: React.FC<DreamshareCardProps> = ({ posterPath, title, over
         alt={title}
         layout="fill"
         objectFit="cover"
+        priority
+        placeholder="blur"
+        blurDataURL={`https://image.tmdb.org/t/p/w500${posterPath}?blurred`} // Optional: Add a blurred placeholder image URL
       />
       <div className="absolute inset-0 bg-black opacity-40" aria-hidden="true"></div>
       <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end h-full">
@@ -27,6 +31,6 @@ const DreamshareCard: React.FC<DreamshareCardProps> = ({ posterPath, title, over
       </div>
     </div>
   );
-};
+});
 
 export default DreamshareCard;
