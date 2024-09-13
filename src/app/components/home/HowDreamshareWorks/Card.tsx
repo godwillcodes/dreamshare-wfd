@@ -33,4 +33,6 @@ const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, 
   );
 });
 
+DreamshareCard.displayName = 'DreamshareCard';
+
 export default DreamshareCard;
