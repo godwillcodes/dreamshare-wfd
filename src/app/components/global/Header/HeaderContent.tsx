@@ -5,14 +5,25 @@ const HeaderContent: React.FC = () => {
   return (
     <div className="relative isolate overflow-hidden pt-14">
       {/* Background image */}
-      <Image
+      {/* <Image
         src="/headerbg.webp"
         alt="People enjoying a beach vacation"
         fill
         priority
         className="absolute inset-0 -z-20 h-full w-full object-cover"
-        
+        sizes="100vw" 
+      /> */}
+       <video className="absolute inset-0 -z-20 h-full w-full object-cover" poster="/headerbg.webp" autoPlay muted loop playsInline preload="auto">
+      <source src="https://videos.pexels.com/video-files/2169879/2169879-hd_1920_1080_30fps.mp4" type="video/mp4" />
+      <track
+        src="/caption.vtt"
+        kind="subtitles"
+        srcLang="en"
+        label="English"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
+      Your browser does not support the video tag.
+    </video>
 
       {/* Tint overlay to improve text readability */}
       <div className="absolute inset-0 bg-black opacity-70 -z-10"></div>
@@ -26,8 +37,8 @@ const HeaderContent: React.FC = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="mt-6 text-lg font-light font-roboto leading-8 text-[#F7F3F2]">
-            And find the perfect partner
+          <p className="mt-6 text-xl font-light font-roboto leading-8 text-[#F7F3F2]">
+          And find the perfect partner to fulfill it
           </p>
 
           {/* Call-to-action button */}
@@ -40,7 +51,7 @@ const HeaderContent: React.FC = () => {
               role="button"
               aria-label="Sign Up"
             >
-              Find your perfect holiday partner
+              Find your holiday partner
             </a>
           </div>
         </div>

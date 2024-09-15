@@ -65,7 +65,7 @@ const HowDreamshareWorks: React.FC = () => {
           transition-all duration-150 ease-in-out transform   hover:text-white hover:border-[#ff4e50]
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"
           >
-            See More
+            See More Cards
           </button>
         </div>
       )}

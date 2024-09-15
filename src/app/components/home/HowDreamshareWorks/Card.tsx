@@ -11,15 +11,16 @@ interface DreamshareCardProps {
 // Memoize the component to avoid unnecessary re-renders
 const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, title, overview, releaseDate }) => {
   return (
-    <div className="relative h-[400px] rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105">
+    <div data-aos="fade-up" className="relative h-[400px] rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105">
       <Image
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={title}
-        layout="fill"
-        objectFit="cover"
+        fill // Replace 'layout="fill"' with 'fill'
+        className="object-cover" // Replace 'objectFit="cover"' with this className
         priority
         placeholder="blur"
-        blurDataURL={`https://image.tmdb.org/t/p/w500${posterPath}?blurred`} // Optional: Add a blurred placeholder image URL
+        blurDataURL={`https://image.tmdb.org/t/p/w500${posterPath}?blurred`}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       <div className="absolute inset-0 bg-black opacity-40" aria-hidden="true"></div>
       <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end h-full">

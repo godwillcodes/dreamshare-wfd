@@ -1,6 +1,7 @@
 import HowDreamshareWorks from './components/home/HowDreamshareWorks';
 import MeetPartners from './components/home/MeetPartners';
 import HolidayActivities from './components/home/HolidayActivities';
+import HolidayActivityForm from './components/home/HolidayInterest';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HowDreamshareWorks />
       <MeetPartners />
       <HolidayActivities />
+      <HolidayActivityForm />
     </div>
   );
 }
