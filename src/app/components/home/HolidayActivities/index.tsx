@@ -8,11 +8,9 @@ interface CardProps {
   imageUrl: string;
   title: string;
   className?: string;
-  width?: number; // Optional width
-  height?: number; // Optional height
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, title, className, width = 600, height = 400 }) => (
+const Card: React.FC<CardProps> = ({ imageUrl, title, className }) => (
   <div
     data-aos="fade-up"
     className={`relative w-full md:h-[310px] h-[120px] shadow-2xl overflow-hidden rounded-lg transition-transform transform hover:scale-105 ${className}`}
