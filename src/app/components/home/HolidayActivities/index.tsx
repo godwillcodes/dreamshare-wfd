@@ -8,9 +8,11 @@ interface CardProps {
   imageUrl: string;
   title: string;
   className?: string;
+  width?: number; // Optional width
+  height?: number; // Optional height
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, title, className }) => (
+const Card: React.FC<CardProps> = ({ imageUrl, title, className, width = 600, height = 400 }) => (
   <div
     data-aos="fade-up"
     className={`relative w-full md:h-[310px] h-[120px] overflow-hidden rounded-lg transition-transform transform hover:scale-105 ${className}`}
@@ -18,8 +20,12 @@ const Card: React.FC<CardProps> = ({ imageUrl, title, className }) => (
     <Image
       src={imageUrl}
       alt={title}
-      fill
+      layout="responsive" // Responsive layout
+      width={width}
+      height={height}
       className="absolute inset-0 h-full w-full object-cover"
+      placeholder="blur"
+      blurDataURL={imageUrl} // Optionally use a low-quality placeholder
     />
     <div className="absolute inset-0 bg-black bg-opacity-50 hover:bg-opacity-70 flex items-center justify-center transition-colors duration-300 ease-in-out hover:bg-[#B30002]">
       <h3 className="text-white text-xl font-montserrat font-bold">{title}</h3>
@@ -40,13 +46,13 @@ const HolidayActivities: React.FC = () => {
       <h2 className="text-2xl md:text-3xl font-montserrat font-bold mb-8 text-center">Discover holiday activity ideas</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card imageUrl="/jeremy-bishop-pikyGuAmwpM-unsplash.jpg" title="Beach Activities" className="h-64" />
-        <Card imageUrl="/freestocks-_3Q3tsJ01nc-unsplash.jpg" title="Shopping Spree" className="h-64" />
-        <Card imageUrl="/alex-munsell-auIbTAcSH6E-unsplash.jpg" title="Local Cuisine" className="h-64" />
-        <Card imageUrl="/alex-munsell-auIbTAcSH6E-unsplash.jpg" title="Local Cuisine" className="col-span-1 h-64" />
-        <Card imageUrl="/peter-kasprzyk-5081CW5tuz0-unsplash.jpg" title="Sight Seeing" className="col-span-2 h-64" />
-        <Card imageUrl="/sneha-cecil-8wH5ug37nbk-unsplash.jpg" title="Cultural Experience" className="col-span-2 h-64" />
-        <Card imageUrl="/headerbg.webp" title="Wildlife Safari" className="col-span-1 h-64" />
+        <Card imageUrl="/jeremy-bishop-pikyGuAmwpM-unsplash.jpg" title="Beach Activities" className="h-64" width={600} height={400} />
+        <Card imageUrl="/freestocks-_3Q3tsJ01nc-unsplash.jpg" title="Shopping Spree" className="h-64" width={600} height={400} />
+        <Card imageUrl="/alex-munsell-auIbTAcSH6E-unsplash.jpg" title="Local Cuisine" className="h-64" width={600} height={400} />
+        <Card imageUrl="/alex-munsell-auIbTAcSH6E-unsplash.jpg" title="Local Cuisine" className="col-span-1 h-64" width={600} height={400} />
+        <Card imageUrl="/peter-kasprzyk-5081CW5tuz0-unsplash.jpg" title="Sight Seeing" className="col-span-2 h-64" width={600} height={400} />
+        <Card imageUrl="/sneha-cecil-8wH5ug37nbk-unsplash.jpg" title="Cultural Experience" className="col-span-2 h-64" width={600} height={400} />
+        <Card imageUrl="/headerbg.webp" title="Wildlife Safari" className="col-span-1 h-64" width={600} height={400} />
       </div>
     </section>
   );
