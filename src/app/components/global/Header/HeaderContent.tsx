@@ -26,7 +26,7 @@ const HeaderContent: React.FC = () => {
     </video>
 
       {/* Tint overlay to improve text readability */}
-      <div className="absolute inset-0 bg-black opacity-70 -z-10"></div>
+      <div className="absolute inset-0 bg-black opacity-60 -z-10"></div>
 
       {/* Main content section */}
       <div className="relative mx-auto max-w-md py-32 px-8 md:px-0 sm:py-32 lg:py-32 z-20">

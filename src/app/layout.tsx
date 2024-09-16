@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Roboto } from 'next/font/google';
 import "./globals.css";
 import Header from "./components/global/Header";
+import Footer from "./components/global/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Header />
         {children}
         <SpeedInsights />
+        <Footer />
       </body>
     </html>
   );

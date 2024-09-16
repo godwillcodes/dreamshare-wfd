@@ -45,7 +45,7 @@ const MeetPartners: React.FC = () => {
     <div className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-montserrat font-bold tracking-tight text-gray-900">Meet a partner for your best holiday</h2>
+          <h2 className="text-2xl md:text-3xl font-montserrat font-bold tracking-tight text-gray-900">Meet a partner for your best holiday</h2>
         </div>
         {loading ? (
           <div className="flex flex-wrap justify-center gap-4">

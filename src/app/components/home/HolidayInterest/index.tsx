@@ -20,7 +20,7 @@ const HolidayActivityForm: React.FC = () => {
               />
               <button
                 type="submit"
-                className="px-6 py-2 text-base font-montserrat  bg-[#ff4e50] font-bold text-white rounded-full hover:bg-[#d53f4a]"
+                className="px-6 py-2 text-base font-montserrat  bg-[#B30002] font-bold text-white rounded-full hover:bg-[#d53f4a]"
               >
                 Search Partners
               </button>
