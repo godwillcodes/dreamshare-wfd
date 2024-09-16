@@ -6,10 +6,12 @@ const HeaderContent: React.FC = () => {
     <div className="relative isolate overflow-hidden pt-14">
       {/* Background image for mobile only */}
       <div className="absolute inset-0 -z-20 block md:hidden">
-        <img
+        <Image
           src="/headerbg.webp"
           alt="People enjoying a beach vacation"
-          className="h-full w-full object-cover"
+          layout="fill"
+          objectFit="cover"
+          priority
         />
       </div>
 
