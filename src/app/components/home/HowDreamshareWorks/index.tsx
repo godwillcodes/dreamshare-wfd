@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import DreamshareCard from './Card'; 
+import DreamshareCard from './Card'; // Update the import if the file path differs
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -37,7 +37,7 @@ const HowDreamshareWorks: React.FC = () => {
       setLoading(true); // Start loading
 
       const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+      const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
 
       try {
         const response = await fetch(url);
@@ -45,7 +45,6 @@ const HowDreamshareWorks: React.FC = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log('API Response:', data); // Console log the entire response
         setMovies(prevMovies => [...prevMovies, ...data.results]);
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -83,7 +82,7 @@ const HowDreamshareWorks: React.FC = () => {
   return (
     <section className="mx-auto max-w-6xl py-6 px-8 md:px-0">
       <h2 className="text-left font-montserrat md:text-center lg:text-center text-2xl md:text-3xl font-bold py-8">
-        How Dreamshare Works
+        Top-Rated Movies of All Time
       </h2>
 
       {loading && (

@@ -7,7 +7,7 @@ const HeaderContent: React.FC = () => {
       {/* Background image for mobile only */}
       <div className="absolute inset-0 -z-20 block md:hidden">
         <Image
-          src="/headerbg.webp"
+          src="/freestocks-_3Q3tsJ01nc-unsplash.jpg"
           alt="People enjoying a beach vacation"
           layout="fill"
           objectFit="cover"

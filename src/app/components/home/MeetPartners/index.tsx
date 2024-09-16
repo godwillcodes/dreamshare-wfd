@@ -19,17 +19,42 @@ const MeetPartners: React.FC = () => {
   useEffect(() => {
     const fetchPeople = async () => {
       const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-      const url = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
+      // Fetch top-rated movies
+      const moviesUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
+      
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
+        const movieResponse = await fetch(moviesUrl);
+        if (!movieResponse.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        setPeople(data.results);
+        const movieData = await movieResponse.json();
+        const topMovies = movieData.results;
+
+        // Extract people from top movies
+        const peopleSet = new Set<Person>();
+
+        for (const movie of topMovies) {
+          const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${API_KEY}`;
+          const creditsResponse = await fetch(movieCreditsUrl);
+          if (!creditsResponse.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const creditsData = await creditsResponse.json();
+          
+          for (const person of creditsData.cast) {
+            peopleSet.add({
+              id: person.id,
+              profile_path: person.profile_path,
+              name: person.name,
+              known_for_department: person.known_for_department,
+            });
+          }
+        }
+
+        setPeople(Array.from(peopleSet));
       } catch (error) {
-        console.error('Paparazzi failed to get the shots Sir:', error);
+        console.error('Failed to get the people:', error);
       } finally {
         setLoading(false);
       }
@@ -45,7 +70,9 @@ const MeetPartners: React.FC = () => {
     <div className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl md:text-3xl font-montserrat font-bold tracking-tight text-gray-900">Meet a partner for your best holiday</h2>
+          <h2 className="text-2xl md:text-3xl font-montserrat font-bold tracking-tight text-gray-900">
+            Meet a partner for your best holiday
+          </h2>
         </div>
         {loading ? (
           <div className="flex flex-wrap justify-center gap-4">
@@ -54,7 +81,10 @@ const MeetPartners: React.FC = () => {
             ))}
           </div>
         ) : (
-          <ul role="list" className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-12 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          <ul
+            role="list"
+            className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-12 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
+          >
             {initialPeople.map((person) => (
               <PartnerCard
                 key={person.id}

@@ -17,20 +17,20 @@ const Footer: React.FC = () => {
           
           {/* Second Column - Title and Options */}
           <div>
-            <h3 className="text-lg text-[#444444] font-montserrat font-bold mb-4">Company</h3>
-            <ul className="font-roboto space-y-3 font-light">
-              <li><a href="#" className="text-[#999999] text-base">About Us</a></li>
-              <li><a href="#" className="text-[#999999] text-base">Contact Us</a></li>
-              <li><a href="#" className="text-[#999999] text-base">Press</a></li>
-              <li><a href="#" className="text-[#999999] text-base">Blog</a></li>
-              <li><a href="#" className="text-[#999999] text-base">Terms & Condition</a></li>
-              <li><a href="#" className="text-[#999999] text-base">Help</a></li>                          
+            <h3 className="text-lg text-black font-montserrat font-bold mb-4">Company</h3>
+            <ul className="font-roboto text-black space-y-3 font-light">
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">About Us</a></li>
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">Contact Us</a></li>
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">Press</a></li>
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">Blog</a></li>
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">Terms & Condition</a></li>
+              <li><a href="#" className="text-black hover:underline hover:text-red-500 text-base">Help</a></li>                          
             </ul>
           </div>
           
           {/* Third Column - Title and Options */}
           <div>
-            <h3 className="text-lg text-[#444444] font-montserrat font-bold mb-4">Partners</h3>
+            <h3 className="text-lg text-black font-montserrat font-bold mb-4">Partners</h3>
             < PartnerList />
           </div>
           

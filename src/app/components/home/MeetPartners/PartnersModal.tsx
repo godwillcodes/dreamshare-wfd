@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 interface Person {
@@ -17,11 +17,31 @@ interface PartnersModalProps {
 }
 
 const PartnersModal: React.FC<PartnersModalProps> = ({ isOpen, onClose, people }) => {
+  const itemsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(people.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, people.length);
+  const paginatedPeople = people.slice(startIndex, endIndex);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="p-4 border-b border-gray-200 flex justify-between items-center">
           <h2 className="text-2xl font-bold font-montserrat text-gray-900">Other Partners</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -31,8 +51,8 @@ const PartnersModal: React.FC<PartnersModalProps> = ({ isOpen, onClose, people }
           </button>
         </div>
         <div className="overflow-y-auto flex-grow p-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-            {people.map((person) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            {paginatedPeople.map((person) => (
               <div key={person.id} className="flex flex-col items-center">
                 <Image
                   className="w-32 h-32 rounded-full object-cover"
@@ -46,6 +66,23 @@ const PartnersModal: React.FC<PartnersModalProps> = ({ isOpen, onClose, people }
               </div>
             ))}
           </div>
+        </div>
+        <div className="flex justify-between p-4 border-t border-gray-200">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="bg-[#B30002] text-white px-4 py-2 rounded-md hover:bg-[#ff4e50] disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-gray-700">{`Page ${currentPage} of ${totalPages}`}</span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="bg-[#B30002] text-white px-4 py-2 rounded-md hover:bg-[#ff4e50] disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

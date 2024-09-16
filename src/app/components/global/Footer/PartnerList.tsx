@@ -38,7 +38,7 @@ const PartnersList: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="text-center text-red-400 py-6">
+      <div className="text-center text-black py-6">
         <p>Loading...</p>
       </div>
     );
@@ -56,7 +56,7 @@ const PartnersList: React.FC = () => {
     <ul className="font-roboto space-y-3">
       {people.map((person) => (
         <li key={person.id}>
-          <a href="#" className="text-[#999999] text-base">
+          <a href="#" className="text-black hover:underline hover:text-red-500 text-base">
             {person.name}
           </a>
         </li>

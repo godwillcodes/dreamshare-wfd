@@ -18,7 +18,7 @@ const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, 
     <div
       data-aos={aos}
       data-aos-delay={aosDelay}
-      className="relative h-[400px] rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105"
+      className="relative h-[400px] shadow-2xl rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105"
     >
       <Image
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}

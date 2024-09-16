@@ -4,7 +4,7 @@ import HeaderContent from './HeaderContent';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-gray-700">
+    <header className="shadow-2xl">
       <HeaderNavigation />
       <HeaderContent />
     </header>

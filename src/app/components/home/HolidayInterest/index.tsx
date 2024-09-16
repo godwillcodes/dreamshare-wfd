@@ -8,9 +8,9 @@ const HolidayActivityForm: React.FC = () => {
           <h2 className="text-2xl font-montserrat font-bold tracking-tight text-gray-900">
             Create your holiday activity
           </h2>
-          <h4 className="text-xl mt-16 font-roboto font-light tracking-tight text-[#666666]">
+          <h3 className="text-xl mt-16 font-roboto font-light tracking-tight text-[#666666]">
             Hi! What are your holiday interests?
-          </h4>
+          </h3>
           <div className="w-full max-w-md mx-auto my-6">
             <form className="flex  flex-col md:flex-row gap-2">
               <input
