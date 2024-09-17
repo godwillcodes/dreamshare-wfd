@@ -3,7 +3,7 @@ import { Montserrat, Roboto } from 'next/font/google';
 import "./globals.css";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -32,10 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${roboto.variable}`}>
+      <GoogleTagManager gtmId="GTM-PSLJN27Q" />
       <body className={`${montserrat.variable} ${roboto.variable} antialiased`}>
         <Header />
         {children}
-        <SpeedInsights />
+        
         <Footer />
       </body>
     </html>
