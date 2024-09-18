@@ -1,5 +1,3 @@
-// Activity.tsx
-'use client';
 import React from 'react';
 import Image from 'next/image';
 
@@ -11,8 +9,8 @@ interface ActivityProps {
 
 const Activity: React.FC<ActivityProps> = ({ imageUrl, title, className }) => (
   <div
-    data-aos="fade-up"
-    className={`relative mx-auto  h-[310px] shadow-2xl overflow-hidden rounded-lg transition-transform transform hover:scale-105 ${className}`}
+    
+    className={`relative mx-auto  h-[310px] shadow-2xl overflow-hidden rounded-lg transition-transform transform hover:scale-95 ${className}`}
   >
     <div className="relative w-full h-full">
       <Image

@@ -1,17 +1,8 @@
 'use client';
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
 import Activity from './Activity';
 
 const HolidayActivities: React.FC = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // Duration of the animation
-      once: false, // Whether animation should happen only once or every time you scroll up/down
-    });
-  }, []);
-
   return (
     <section className="mx-auto max-w-6xl py-6 px-8 md:px-0">
       <h2 className="text-2xl md:text-3xl font-montserrat font-bold mb-8 text-center">Discover holiday activity ideas</h2>
