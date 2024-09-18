@@ -81,12 +81,12 @@ const HowDreamshareWorks: React.FC = () => {
 
   return (
     <section className="mx-auto max-w-6xl py-6 px-8 md:px-0">
-      <h2 className="text-left font-montserrat md:text-center lg:text-center text-2xl md:text-3xl font-bold py-8">
+      <h2 className="font-montserrat  text-center text-2xl md:text-3xl font-bold py-8">
         How Dreamshare Works
       </h2>
 
       {loading && (
-        <div className="text-center py-6">
+        <div className="text-center py-6 mt-5">
           <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-[#B30002] rounded-full animate-spin mx-auto"></div>
           <p className="text-gray-500 mt-2">Loading...</p>
         </div>

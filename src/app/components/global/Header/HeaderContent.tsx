@@ -46,9 +46,9 @@ const HeaderContent: React.FC = () => {
       <div className="relative mx-auto max-w-md py-32 px-8 md:px-0 sm:py-32 lg:py-32 z-20">
         <div className="text-center">
           {/* //create a div only visible on mobile */}
-          <div className="hidden sm:block">
+          <div className="block my-3 md:hidden mx-auto text-center">
             <svg
-              className="h-4 w-auto"
+              className="h-4 w-64 mb-12 mx-auto text-center"
               viewBox="0 0 150 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ const HeaderContent: React.FC = () => {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="#"
-              className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
+              className="text-sm w-full md:w-auto font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
               transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"
               role="button"

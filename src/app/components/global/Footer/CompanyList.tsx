@@ -12,7 +12,7 @@ const companyLinks = [
 
 const CompanyList: React.FC = () => {
   return (
-    <ul className="font-roboto space-y-3 text-center items-center md:items-start md:text-left flex md:block">
+    <ul className="font-roboto space-y-3 text-center items-center md:items-start md:text-left flex flex-wrap md:block gap-4 justify-center">
       {companyLinks.map((link, index) => (
         <li key={index}>
           <a

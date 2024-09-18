@@ -32,9 +32,9 @@ export default async function PartnersList() {
 
   // Render the list of people
   return (
-    <ul className="font-roboto space-y-3 text-center md:text-left flex md:block ">
+    <ul className="font-roboto space-y-3 text-center items-center md:items-start md:text-left flex flex-wrap md:block gap-4 justify-center ">
       {people.map((person: Person) => (
-        <li key={person.id} className="md:mr-4">
+        <li key={person.id} className="mt-0">
           <a href="#" className="text-black hover:underline hover:underline-offset-8 hover:text-red-500 text-base">
             {person.name}
           </a>
