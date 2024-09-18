@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from './Form';
 
 const HolidayActivityForm: React.FC = () => {
   return (
@@ -12,19 +13,7 @@ const HolidayActivityForm: React.FC = () => {
             Hi! What are your holiday interests?
           </h3>
           <div className="w-full max-w-md mx-auto my-6">
-            <form className="flex  flex-col md:flex-row gap-2">
-              <input
-                type="text"
-                placeholder="Enter your interests"
-                className="p-2 font-montserrat  border border-gray-300 rounded-md flex-1"
-              />
-              <button
-                type="submit"
-                className="px-6 py-2 text-base font-montserrat  bg-[#B30002] font-bold text-white rounded-full hover:bg-[#d53f4a]"
-              >
-                Search Partners
-              </button>
-            </form>
+            <Form />
           </div>
         </div>
       </div>

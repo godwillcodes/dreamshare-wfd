@@ -67,7 +67,7 @@ const PartnersModal: React.FC<PartnersModalProps> = ({ isOpen, onClose, people }
             ))}
           </div>
         </div>
-        <div className="flex justify-between p-4 border-t border-gray-200">
+        <div className="flex justify-between  font-roboto p-4 border-t border-gray-200">
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}

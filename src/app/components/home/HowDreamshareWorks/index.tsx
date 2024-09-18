@@ -82,7 +82,7 @@ const HowDreamshareWorks: React.FC = () => {
   return (
     <section className="mx-auto max-w-6xl py-6 px-8 md:px-0">
       <h2 className="text-left font-montserrat md:text-center lg:text-center text-2xl md:text-3xl font-bold py-8">
-        Top-Rated Movies of All Time
+        How Dreamshare Works
       </h2>
 
       {loading && (
