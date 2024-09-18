@@ -18,7 +18,7 @@ const Activity: React.FC<ActivityProps> = ({ imageUrl, title, className }) => (
       <Image
         src={imageUrl}
         alt={title}
-        layout="fill" // Use "fill" to ensure the image covers the container
+        fill // Use "fill" to ensure the image covers the container
         className="object-cover"
         placeholder="blur"
         blurDataURL={imageUrl} // Optionally use a low-quality placeholder
