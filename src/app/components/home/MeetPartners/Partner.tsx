@@ -50,50 +50,27 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
   };
 
   return (
-    <li onClick={onClick} className="p-4 cursor-pointer hover:bg-gray-100 transition-colors duration-200">
-      <div className="w-[120px] h-[120px] relative mx-auto">
-        <div className="w-[120px] h-[120px] left-0 top-0 absolute">
-          <Image
-            className="w-[120px] h-[120px] left-0 top-0 absolute rounded-full object-cover"
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-            alt={person.name}
-            width={120}
-            height={120}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/user-hands-svgrepo-com.svg"
-          />
-          <Image
-            className="w-[120px] h-[120px] left-0 top-0 absolute rounded-full object-cover"
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-            alt={person.name}
-            width={120}
-            height={120}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/user-hands-svgrepo-com.svg"
-          />
-          <Image
-            className="w-[126px] h-[126px] left-[-3px] top-[-3px] absolute rounded-full object-cover"
-            src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-            alt={person.name}
-            width={126}
-            height={126}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/user-hands-svgrepo-com.svg"
-          />
-        </div>
-        <div className="w-8 h-8 left-[88px] top-[88px] absolute bg-[#ff4e50] rounded-full" />
-        <div className="w-4 h-4 left-[96px] top-[96px] absolute bg-white rounded-full flex items-center justify-center">
-          {/* Insert your SVG here */}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-2 h-2 text-red-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
-</svg>
+    <li onClick={onClick} className="">
+      <Image
+        className="mx-auto h-64 w-64 object-cover rounded-full"
+        src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+        alt={person.name}
+        width={100}
+        height={100}
+        loading="lazy"
+        quality={100}
+        placeholder="blur"
+        blurDataURL="/user-hands-svgrepo-com.svg"
+      />
+      {/* add an svg just below the image, with an svg,   */}
+      <div className="relative ml-auto -mt-20 md:-mt-16 mr-5 w-16 h-16 border-4 border-white bg-[#B30002] rounded-full flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+        </svg>
 
-        </div>
       </div>
-      <h3 className="mt-6 mb-4 text-[#444444] font-montserrat text-xl font-bold leading-7 tracking-tight text-gray-900">{person.name}</h3>
+
+      <h3 className="mt-12 mb-4 text-[#444444] font-montserrat text-xl font-bold leading-7 tracking-tight text-gray-900">{person.name}</h3>
       {loading ? (
         <p className="text-base font-roboto leading-6 font-light text-gray-600">Loading biography...</p>
       ) : (

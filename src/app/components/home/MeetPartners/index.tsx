@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import PartnerCard from './Partner';
 import PartnersModal from './PartnersModal';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Person {
   id: number;
@@ -17,6 +19,12 @@ const MeetPartners: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init({
+      once: false,
+      duration: 600,
+      easing: 'ease-out-cubic',
+    });
+
     const fetchPeople = async () => {
       const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
@@ -69,15 +77,15 @@ const MeetPartners: React.FC = () => {
   return (
     <div className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-montserrat font-bold tracking-tight text-gray-900">
             Meet a partner for your best holiday
           </h2>
         </div>
         {loading ? (
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center mt-5 gap-4">
             {[...Array(4)].map((_, index) => (
-              <div key={index} className="w-60 h-80 bg-gray-200 rounded-lg animate-pulse"></div>
+              <div key={index} className="w-60 h-60 bg-gray-200 rounded-full animate-pulse"></div>
             ))}
           </div>
         ) : (
@@ -85,16 +93,17 @@ const MeetPartners: React.FC = () => {
             role="list"
             className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-12 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
           >
-            {initialPeople.map((person) => (
-              <PartnerCard
-                key={person.id}
-                person={person}
-                onClick={() => console.log(`You clicked on ${person.name}. They're not interested.`)}
-              />
+            {initialPeople.map((person, index) => (
+              <li key={person.id} data-aos="fade-up" data-aos-delay={index * 100}>
+                <PartnerCard
+                  person={person}
+                  onClick={() => console.log(`You clicked on ${person.name}. They're not interested.`)}
+                />
+              </li>
             ))}
           </ul>
         )}
-        <div className="text-center mx-auto my-10">
+        <div className="text-center mx-auto my-10" data-aos="fade-up" data-aos-delay="400">
           <button
             onClick={() => setIsModalOpen(true)}
             className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full

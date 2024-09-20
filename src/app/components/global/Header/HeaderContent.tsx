@@ -7,7 +7,7 @@ const HeaderContent: React.FC = () => {
       {/* Background image for mobile only */}
       <div className="absolute inset-0 -z-20 block md:hidden">
         <Image
-          src="/header.webp"
+          src="/images/header.webp"
           alt="People enjoying a beach vacation"
           fill
           objectFit="cover"
@@ -17,8 +17,8 @@ const HeaderContent: React.FC = () => {
 
       {/* Video for tablet and larger screens */}
       <video
-        className="absolute inset-0 -z-20 hidden md:block object-cover"
-        poster="/header.webp"
+        className="absolute h-full w-full inset-0 -z-20 hidden md:block object-cover"
+        poster="/images/header.webp"
         autoPlay
         muted
         loop
@@ -30,7 +30,7 @@ const HeaderContent: React.FC = () => {
           type="video/mp4"
         />
         <track
-          src="/caption.vtt"
+          src="/caption/caption.vtt"
           kind="subtitles"
           srcLang="en"
           label="English"

@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           
           {/* Fourth Column - Image */}
           <div className="flex items-start justify-center md:justify-start">
-            <Image src="/2.svg" alt="Social Media" width={150} height={150} className="object-contain" />
+            <Image src="/images/logos/2.svg" alt="Social Media" width={150} height={150} className="object-contain" />
           </div>
         </div>
       </div>
