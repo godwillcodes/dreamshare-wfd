@@ -76,7 +76,7 @@ const MeetPartners: React.FC = () => {
 
   return (
     <div className="bg-white py-12">
-      <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 text-center lg:px-8">
         <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-montserrat font-bold tracking-tight text-gray-900">
             Meet a partner for your best holiday

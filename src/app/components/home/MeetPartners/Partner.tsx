@@ -52,7 +52,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
   return (
     <li onClick={onClick} className="">
       <Image
-        className="mx-auto h-64 w-64 object-cover rounded-full"
+        className="mx-auto h-60 w-60 object-cover object-center rounded-full"
         src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
         alt={person.name}
         width={100}
