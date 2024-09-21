@@ -5,6 +5,7 @@ import PartnerCard from './Partner';
 import PartnersModal from './PartnersModal';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { sendGTMEvent } from '@next/third-parties/google'
 
 interface Person {
   id: number;

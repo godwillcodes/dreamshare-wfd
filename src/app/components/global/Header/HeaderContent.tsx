@@ -1,5 +1,7 @@
+'use client';
 import React from "react";
 import Image from "next/image";
+import { sendGTMEvent } from '@next/third-parties/google';
 
 const HeaderContent: React.FC = () => {
   return (
@@ -26,7 +28,7 @@ const HeaderContent: React.FC = () => {
         preload="auto"
       >
         <source
-          src="https://videos.pexels.com/video-files/2169879/2169879-hd_1920_1080_30fps.mp4"
+          src="/video/banner.mp4"
           type="video/mp4"
         />
         <track
@@ -74,6 +76,10 @@ const HeaderContent: React.FC = () => {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="#"
+              onClick={() => {
+                // Send GTM event
+                sendGTMEvent({ event: 'findHolidayPartnerClick', value: 'holidayPartnerLink' });
+              }}
               className="text-sm w-full md:w-auto font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
               transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"

@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import DreamshareCard from './Card'; // Update the import if the file path differs
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useState } from "react";
+import DreamshareCard from "./Card"; // Update the import if the file path differs
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 interface Movie {
   id: number;
@@ -14,14 +15,36 @@ interface Movie {
 }
 
 const ChevronDownIcon: React.FC = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M19 9l-7 7-7-7"
+    ></path>
   </svg>
 );
 
 const ChevronUpIcon: React.FC = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M5 15l7-7 7 7"
+    ></path>
   </svg>
 );
 
@@ -42,12 +65,12 @@ const HowDreamshareWorks: React.FC = () => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setMovies(prevMovies => [...prevMovies, ...data.results]);
+        setMovies((prevMovies) => [...prevMovies, ...data.results]);
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error("Error fetching movies:", error);
       } finally {
         setLoading(false); // End loading
       }
@@ -69,9 +92,9 @@ const HowDreamshareWorks: React.FC = () => {
   }, [visibleMovies]);
 
   const handleSeeMore = () => {
-    setVisibleMovies(prevVisible => prevVisible + 3);
+    setVisibleMovies((prevVisible) => prevVisible + 3);
     if (visibleMovies + 3 > movies.length) {
-      setPage(prevPage => prevPage + 1);
+      setPage((prevPage) => prevPage + 1);
     }
   };
 
@@ -111,10 +134,18 @@ const HowDreamshareWorks: React.FC = () => {
           <div className="text-center mt-8 flex justify-center gap-4">
             {visibleMovies < movies.length && !showSeeLess && (
               <button
-                onClick={handleSeeMore}
+                onClick={() => {
+                  handleSeeMore();
+
+                  // Send GTM event for "See More"
+                  sendGTMEvent({
+                    event: "seeMoreMoviesClick",
+                    value: "seeMoreMoviesButton",
+                  });
+                }}
                 className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-                transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
               >
                 See More
                 <ChevronDownIcon />
@@ -123,10 +154,18 @@ const HowDreamshareWorks: React.FC = () => {
 
             {showSeeLess && (
               <button
-                onClick={handleSeeLess}
+                onClick={() => {
+                  handleSeeLess();
+
+                  // Send GTM event for "See Less"
+                  sendGTMEvent({
+                    event: "seeLessMoviesClick",
+                    value: "seeLessMoviesButton",
+                  });
+                }}
                 className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-                transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
               >
                 See Less
                 <ChevronUpIcon />
