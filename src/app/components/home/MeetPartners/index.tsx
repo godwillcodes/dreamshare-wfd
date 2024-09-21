@@ -106,7 +106,12 @@ const MeetPartners: React.FC = () => {
         )}
         <div className="text-center mx-auto my-10" data-aos="fade-up" data-aos-delay="400">
           <button
-            onClick={() => setIsModalOpen(true)}
+           onClick={() => {
+              // Open the modal
+              setIsModalOpen(true);   
+              // Send GTM event
+              sendGTMEvent({ event: 'seeOtherPartnersClick', value: 'partnersModal' });
+            }}
             className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
               transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"
