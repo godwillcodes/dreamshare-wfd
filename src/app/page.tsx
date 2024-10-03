@@ -5,7 +5,7 @@ import HolidayActivityForm from './components/home/HolidayInterest';
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="bg-white">
       <HowDreamshareWorks />
       <MeetPartners />
       <HolidayActivities />
