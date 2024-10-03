@@ -16,7 +16,7 @@ const HolidayActivities: React.FC = () => {
   return (
     <section className="mx-auto max-w-6xl py-6 px-4 sm:px-6 md:px-8">
       <h2 
-        className="text-2xl sm:text-3xl font-montserrat font-bold mb-6 sm:mb-8 text-center"
+        className="text-2xl sm:text-3xl text-black font-montserrat font-bold mb-6 sm:mb-8 text-center"
         data-aos="fade-down"
       >
         Discover holiday activities ideas
