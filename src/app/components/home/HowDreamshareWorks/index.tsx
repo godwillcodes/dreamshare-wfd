@@ -103,8 +103,8 @@ const HowDreamshareWorks: React.FC = () => {
   };
 
   return (
-    <section className="mx-auto max-w-6xl py-6 px-8 md:px-0">
-      <h2 className="font-montserrat  text-center text-2xl md:text-3xl font-bold py-8">
+    <section className="mx-auto max-w-6xl bg-white py-6 px-8 md:px-0">
+      <h2 className="font-montserrat text-black text-center text-2xl md:text-3xl font-bold py-8">
         How Dreamshare Works
       </h2>
 
