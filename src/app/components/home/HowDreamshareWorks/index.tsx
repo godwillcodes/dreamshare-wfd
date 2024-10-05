@@ -1,10 +1,9 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import DreamshareCard from "./Card"; // Update the import if the file path differs
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { sendGTMEvent } from "@next/third-parties/google";
+// pages/index.tsx
+import React, { useState } from "react";
+import DreamshareCard from "./Card"; // Update if file path differs
+import { fetchMovies } from "../../../lib/FetchMoviesApi";
+import ChevronDownIcon from "../../global/Icons/ChevronDownIcon";
+import ChevronUpIcon from "../../global/Icons/ChevronUpIcon";
 
 interface Movie {
   id: number;
@@ -14,87 +13,32 @@ interface Movie {
   release_date: string;
 }
 
-const ChevronDownIcon: React.FC = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M19 9l-7 7-7-7"
-    ></path>
-  </svg>
-);
+interface HomeProps {
+  initialMovies: Movie[];
+}
 
-const ChevronUpIcon: React.FC = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M5 15l7-7 7 7"
-    ></path>
-  </svg>
-);
-
-const HowDreamshareWorks: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+const Home: React.FC<HomeProps> = ({ initialMovies }) => {
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
   const [visibleMovies, setVisibleMovies] = useState<number>(3);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSeeLess, setShowSeeLess] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      setLoading(true); // Start loading
+  const handleSeeMore = async () => {
+    setVisibleMovies((prevVisible) => prevVisible + 3);
 
-      const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-      const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
+    if (visibleMovies + 3 > movies.length && !loading) {
+      setLoading(true);
 
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setMovies((prevMovies) => [...prevMovies, ...data.results]);
+        const newMovies = await fetchMovies(page + 1);
+        setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+        setPage(page + 1);
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching more movies:", error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false);
       }
-    };
-
-    fetchMovies();
-  }, [page]);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // Duration of animation in milliseconds
-      once: false, // Whether animation should happen only once
-    });
-  }, []);
-
-  useEffect(() => {
-    // Update showSeeLess based on visibleMovies
-    setShowSeeLess(visibleMovies > 9);
-  }, [visibleMovies]);
-
-  const handleSeeMore = () => {
-    setVisibleMovies((prevVisible) => prevVisible + 3);
-    if (visibleMovies + 3 > movies.length) {
-      setPage((prevPage) => prevPage + 1);
     }
   };
 
@@ -108,74 +52,56 @@ const HowDreamshareWorks: React.FC = () => {
         How Dreamshare Works
       </h2>
 
-      {loading && (
-        <div className="text-center py-6 mt-5">
-          <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-[#B30002] rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-500 mt-2">Loading...</p>
-        </div>
-      )}
+      <div className="grid grid-cols-1 pt-4 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {movies.slice(0, visibleMovies).map((movie, index) => (
+          <DreamshareCard
+            key={movie.id}
+            posterPath={movie.poster_path}
+            title={movie.title}
+            overview={movie.overview}
+            releaseDate={movie.release_date}
+            data-aos="fade-up"
+            data-aos-delay={(index * 100).toString()}
+          />
+        ))}
+      </div>
 
-      {!loading && (
-        <>
-          <div className="grid grid-cols-1 pt-4 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {movies.slice(0, visibleMovies).map((movie, index) => (
-              <DreamshareCard
-                key={movie.id}
-                posterPath={movie.poster_path}
-                title={movie.title}
-                overview={movie.overview}
-                releaseDate={movie.release_date}
-                data-aos="fade-up"
-                data-aos-delay={(index * 100).toString()} // Stagger delay for each card
-              />
-            ))}
-          </div>
+      <div className="text-center mt-8 flex justify-center gap-4">
+        {visibleMovies < movies.length && !showSeeLess && (
+          <button
+            onClick={handleSeeMore}
+            className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
+            transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+          >
+            See More
+            <ChevronDownIcon />
+          </button>
+        )}
 
-          <div className="text-center mt-8 flex justify-center gap-4">
-            {visibleMovies < movies.length && !showSeeLess && (
-              <button
-                onClick={() => {
-                  handleSeeMore();
-
-                  // Send GTM event for "See More"
-                  sendGTMEvent({
-                    event: "seeMoreMoviesClick",
-                    value: "seeMoreMoviesButton",
-                  });
-                }}
-                className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
-              >
-                See More
-                <ChevronDownIcon />
-              </button>
-            )}
-
-            {showSeeLess && (
-              <button
-                onClick={() => {
-                  handleSeeLess();
-
-                  // Send GTM event for "See Less"
-                  sendGTMEvent({
-                    event: "seeLessMoviesClick",
-                    value: "seeLessMoviesButton",
-                  });
-                }}
-                className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
-              >
-                See Less
-                <ChevronUpIcon />
-              </button>
-            )}
-          </div>
-        </>
-      )}
+        {showSeeLess && (
+          <button
+            onClick={handleSeeLess}
+            className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
+            transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+          >
+            See Less
+            <ChevronUpIcon />
+          </button>
+        )}
+      </div>
     </section>
   );
 };
 
-export default HowDreamshareWorks;
+export const getServerSideProps = async () => {
+  const initialMovies = await fetchMovies(1); // Fetch the first page on server side
+  return {
+    props: {
+      initialMovies,
+    },
+  };
+};
+
+export default Home;
