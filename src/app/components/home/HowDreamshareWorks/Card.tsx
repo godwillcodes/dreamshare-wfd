@@ -32,7 +32,7 @@ const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, 
       />
       <div className="absolute inset-0 bg-black opacity-40" aria-hidden="true"></div>
       <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end h-full">
-        <div className="bg-[#FF4E50] text-white py-2 px-6 rounded-full self-start group-hover:bg-[#FF2A2A] transition-colors duration-300 ease-in-out">
+        <div className="bg-[#B30002] text-white py-2 px-6 rounded-full self-start  transition-colors duration-300 ease-in-out">
           <h3 className="text-sm font-montserrat uppercase font-light">{new Date(releaseDate).getFullYear()}</h3>
         </div>
         <h3 className="text-xl font-montserrat font-bold text-white py-6">{title}</h3>
