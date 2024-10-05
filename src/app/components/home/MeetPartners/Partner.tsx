@@ -50,7 +50,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
   };
 
   return (
-    <li onClick={onClick} className="">
+    <div onClick={onClick} className="">
       <Image
         className="mx-auto h-60 w-60 object-cover object-center rounded-full"
         src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
@@ -78,7 +78,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
           {truncateText(biography, 80)}
         </p>
       )}
-    </li>
+    </div>
   );
 };
 
