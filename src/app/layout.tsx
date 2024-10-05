@@ -60,7 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${roboto.variable}`}>
       <body className="antialiased">
-        <GoogleTagManager gtmId="GTM-PSLJN27Q" />
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
         <Header />
         {children}
         <Footer />
