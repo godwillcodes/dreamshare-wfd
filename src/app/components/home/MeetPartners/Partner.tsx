@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Airplane from '../../global/Icons/Airplane';
 
 interface Person {
   id: number;
@@ -50,9 +51,9 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
   };
 
   return (
-    <div onClick={onClick} className="">
+    <div onClick={onClick} className="group">
       <Image
-        className="mx-auto h-60 w-60 object-cover object-center rounded-full"
+        className="mx-auto h-60 w-60 object-cover object-center rounded-full group-hover:opacity-80 transition-opacity duration-300"
         src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
         alt={person.name}
         width={100}
@@ -64,10 +65,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ person, onClick }) => {
       />
       {/* add an svg just below the image, with an svg,   */}
       <div className="relative ml-auto -mt-20 md:-mt-16 mr-5 w-16 h-16 border-4 border-white bg-[#B30002] rounded-full flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-        </svg>
-
+        <Airplane />
       </div>
 
       <h3 className="mt-12 mb-4 text-[#444444] font-montserrat text-xl font-bold leading-7 tracking-tight text-gray-900">{person.name}</h3>

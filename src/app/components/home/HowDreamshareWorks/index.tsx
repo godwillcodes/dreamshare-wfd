@@ -1,7 +1,9 @@
-// pages/index.tsx
+"use client";
+
 import React, { useState } from "react";
-import DreamshareCard from "./Card"; // Update if file path differs
-import { fetchMovies } from "../../../lib/FetchMoviesApi";
+import DreamshareCard from "./Card"; 
+import { fetchTopRatedMovies } from "@/lib/FetchMoviesApi";
+import { sendGTMEvent } from "@next/third-parties/google";
 import ChevronDownIcon from "../../global/Icons/ChevronDownIcon";
 import ChevronUpIcon from "../../global/Icons/ChevronUpIcon";
 
@@ -13,33 +15,24 @@ interface Movie {
   release_date: string;
 }
 
-interface HomeProps {
-  initialMovies: Movie[];
-}
-
-const Home: React.FC<HomeProps> = ({ initialMovies }) => {
-  const [movies, setMovies] = useState<Movie[]>(initialMovies);
+const HowDreamshareWorks: React.FC<{ initialMovies: Movie[] }> = ({ initialMovies }) => {
   const [visibleMovies, setVisibleMovies] = useState<number>(3);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [showSeeLess, setShowSeeLess] = useState<boolean>(false);
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
 
   const handleSeeMore = async () => {
+    const nextPage = page + 1;
+    const newMovies = await fetchTopRatedMovies(nextPage);
+    
+    setMovies((prevMovies) => [...prevMovies, ...newMovies]);
     setVisibleMovies((prevVisible) => prevVisible + 3);
+    setPage(nextPage);
 
-    if (visibleMovies + 3 > movies.length && !loading) {
-      setLoading(true);
-
-      try {
-        const newMovies = await fetchMovies(page + 1);
-        setMovies((prevMovies) => [...prevMovies, ...newMovies]);
-        setPage(page + 1);
-      } catch (error) {
-        console.error("Error fetching more movies:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    // Send GTM event for "See More"
+    sendGTMEvent({
+      event: "seeMoreMoviesClick",
+      value: "seeMoreMoviesButton",
+    });
   };
 
   const handleSeeLess = () => {
@@ -61,30 +54,30 @@ const Home: React.FC<HomeProps> = ({ initialMovies }) => {
             overview={movie.overview}
             releaseDate={movie.release_date}
             data-aos="fade-up"
-            data-aos-delay={(index * 100).toString()}
+            data-aos-delay={(index * 100).toString()} // Stagger delay for each card
           />
         ))}
       </div>
 
       <div className="text-center mt-8 flex justify-center gap-4">
-        {visibleMovies < movies.length && !showSeeLess && (
+        {visibleMovies < movies.length && (
           <button
             onClick={handleSeeMore}
             className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-            transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+      focus:outline-none  shadow-md hover:shadow-lg flex items-center gap-2"
           >
             See More
             <ChevronDownIcon />
           </button>
         )}
 
-        {showSeeLess && (
+        {visibleMovies > 3 && (
           <button
             onClick={handleSeeLess}
             className="text-sm font-montserrat font-bold leading-6 text-white bg-[#B30002] px-6 py-2 rounded-full
-            transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
-            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg flex items-center gap-2"
+      transition-all duration-150 ease-in-out transform hover:text-white hover:bg-[#ff4e50]
+      focus:outline-none  shadow-md hover:shadow-lg flex items-center gap-2"
           >
             See Less
             <ChevronUpIcon />
@@ -95,13 +88,4 @@ const Home: React.FC<HomeProps> = ({ initialMovies }) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const initialMovies = await fetchMovies(1); // Fetch the first page on server side
-  return {
-    props: {
-      initialMovies,
-    },
-  };
-};
-
-export default Home;
+export default HowDreamshareWorks;

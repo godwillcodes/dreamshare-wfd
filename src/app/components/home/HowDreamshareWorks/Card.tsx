@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import 'aos/dist/aos.css';
@@ -18,13 +16,13 @@ const DreamshareCard: React.FC<DreamshareCardProps> = React.memo(({ posterPath, 
     <div
       data-aos={aos}
       data-aos-delay={aosDelay}
-      className="relative h-[400px] shadow-2xl rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-105"
+      className="relative group h-[400px] shadow-2xl rounded-lg overflow-hidden card-bg group transition-transform duration-300 ease-in-out transform hover:scale-95"
     >
       <Image
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={title}
         fill
-        className="object-cover"
+        className="object-cover group-hover:scale-105 transition-transform duration-300"
         priority
         placeholder="blur"
         blurDataURL={`https://image.tmdb.org/t/p/w500${posterPath}?blurred`}
